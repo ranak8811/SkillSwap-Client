@@ -10,55 +10,32 @@ const Navbar = () => {
   const { user, logOutUser } = useAuth();
   const location = useLocation();
 
-  const isActive = (path) => location.pathname === path;
+  const navItems = [
+    { name: "Home", path: "/" },
+    { name: "Dashboard", path: "/" },
+    { name: "About Us", path: "/about" },
+    { name: "Trending Skills", path: "/trending" },
+  ];
 
-  const navLinks = (
-    <>
-      <li>
-        <Link
-          to="/"
-          className={`text-[--color-text] font-medium transition-colors duration-300 ${
-            isActive("/")
-              ? "text-[--color-primary] underline underline-offset-4"
-              : ""
-          }`}
-        >
-          Home
-        </Link>
-      </li>
-      <li>
-        <Link
-          to="/about"
-          className={`text-[--color-text] font-medium transition-colors duration-300 ${
-            isActive("/about")
-              ? "text-[--color-primary] underline underline-offset-4"
-              : ""
-          }`}
-        >
-          About Us
-        </Link>
-      </li>
-      <li>
-        <Link
-          to="/trending"
-          className={`text-[--color-text] font-medium transition-colors duration-300 ${
-            isActive("/trending")
-              ? "text-[--color-primary] underline underline-offset-4"
-              : ""
-          }`}
-        >
-          Trending Skills
-        </Link>
-      </li>
-    </>
-  );
+  const navLinks = navItems.map((item) => (
+    <li key={item.path}>
+      <Link
+        to={item.path}
+        className={`text-textt font-medium transition-all duration-200 hover:text-primaryy ${
+          location.pathname === item.path ? "border-b-2 border-primaryy" : ""
+        }`}
+      >
+        {item.name}
+      </Link>
+    </li>
+  ));
 
   return (
     <motion.div
-      className="navbar bg-[--color-background] shadow-sm px-4"
-      initial={{ y: -100, opacity: 0 }}
+      initial={{ y: -50, opacity: 0 }}
       animate={{ y: 0, opacity: 1 }}
       transition={{ duration: 0.5 }}
+      className="navbar bg-backgroundd shadow-sm px-4"
     >
       <div className="navbar-start">
         <div className="dropdown">
@@ -80,22 +57,14 @@ const Navbar = () => {
           </div>
           <ul
             tabIndex={0}
-            className="menu menu-sm dropdown-content mt-3 z-[10] p-2 shadow bg-[--color-background] rounded-box w-52"
+            className="menu menu-sm dropdown-content mt-3 z-[1] p-2 shadow bg-backgroundd rounded-box w-52"
           >
             {navLinks}
           </ul>
         </div>
         <Link to="/" className="flex items-center gap-2">
-          <motion.img
-            src={logo}
-            alt="SkillSwap Logo"
-            className="w-10"
-            whileHover={{ rotate: 10 }}
-            transition={{ type: "spring", stiffness: 300 }}
-          />
-          <span className="text-xl font-bold text-[--color-primary]">
-            SkillSwap
-          </span>
+          <img src={logo} alt="SkillSwap Logo" className="w-10" />
+          <span className="text-xl font-bold text-primaryy">SkillSwap</span>
         </Link>
       </div>
 
@@ -110,6 +79,7 @@ const Navbar = () => {
               <label tabIndex={0} className="btn btn-ghost btn-circle avatar">
                 <div className="w-10 rounded-full">
                   <img
+                    referrerPolicy="no-referrer"
                     src={
                       user?.photoURL ||
                       "https://img.daisyui.com/images/stock/photo-1534528741775-53994a69daeb.jpg"
@@ -120,9 +90,9 @@ const Navbar = () => {
               </label>
               <ul
                 tabIndex={0}
-                className="menu menu-sm dropdown-content mt-3 z-[1] p-2 shadow bg-[--color-background] rounded-box w-52"
+                className="menu menu-sm dropdown-content mt-3 z-[1] p-2 shadow bg-backgroundd rounded-box w-52"
               >
-                <li className="text-center font-semibold text-[--color-text]">
+                <li className="text-center font-semibold text-textt">
                   {user?.displayName}
                 </li>
                 <li>
@@ -139,10 +109,7 @@ const Navbar = () => {
                   </Link>
                 </li>
                 <li>
-                  <Link
-                    to="/dashboard/create-skill"
-                    className="flex items-center gap-2"
-                  >
+                  <Link to="/createSkill" className="flex items-center gap-2">
                     <FaPlus /> Create Skill
                   </Link>
                 </li>
@@ -164,12 +131,12 @@ const Navbar = () => {
           </>
         ) : (
           <>
-            <Link to="/signup" className="btn btn-sm bg-[#54b689] text-white">
+            <Link to="/signup" className="btn btn-sm bg-primaryy text-white">
               Sign Up
             </Link>
             <Link
               to="/login"
-              className="btn btn-sm btn-outline border-[--color-primary] text-[--color-primary]"
+              className="btn btn-sm btn-outline border-primaryy text-primaryy"
             >
               Log In
             </Link>
