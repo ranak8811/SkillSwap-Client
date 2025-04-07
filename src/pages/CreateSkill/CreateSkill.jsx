@@ -190,7 +190,7 @@ const CreateSkill = () => {
 
         <button
           type="submit"
-          className="btn bg-primaryy w-full"
+          className="btn bg-primaryy text-white w-full"
           disabled={isSubmitting}
         >
           {isSubmitting ? "Creating..." : "Create Skill"}

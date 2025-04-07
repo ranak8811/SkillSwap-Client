@@ -77,7 +77,7 @@ const Navbar = () => {
           <>
             <div className="dropdown dropdown-end">
               <label tabIndex={0} className="btn btn-ghost btn-circle avatar">
-                <div className="w-10 rounded-full">
+                <div className="w-10 border-2 border-primaryy rounded-full">
                   <img
                     referrerPolicy="no-referrer"
                     src={

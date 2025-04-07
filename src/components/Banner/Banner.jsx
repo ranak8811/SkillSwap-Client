@@ -107,36 +107,44 @@ const Banner = () => {
           </h1>
           <p className="text-lg mb-6">
             A unique platform to exchange skills through offering and
-            requesting.
+            requesting. SkillSwap is a web platform designed to facilitate the
+            exchange of skills between users. It allows individuals to offer
+            their abilities and request help from others, fostering a
+            community-driven environment for learning and collaboration.
           </p>
-          <a href="#skills-section">
-            <button className="bg-[#54b689] hover:bg-[#439e76] text-white font-semibold px-6 py-3 rounded-xl transition">
-              Go to Skills Section
-            </button>
-          </a>
+          <div className="flex gap-4 items-center">
+            <div>
+              <a href="#skills-section">
+                <button className="bg-[#54b689] hover:bg-[#439e76] text-white font-semibold px-6 py-3 rounded-xl transition">
+                  Go to Skills Section
+                </button>
+              </a>
+            </div>
+
+            <div className="relative mt-8 md:mt-0">
+              <button
+                onClick={() => setShowDropdown((prev) => !prev)}
+                className="btn-outline bg-white hover:bg-[#54b689] hover:text-white text-[#07110c] font-medium px-6 py-3 rounded-xl transition"
+              >
+                All Types
+              </button>
+              {showDropdown && (
+                <div className="absolute right-0 mt-2 bg-white shadow-lg rounded-md w-48 max-h-60 overflow-y-auto z-50">
+                  {categories.map((cat) => (
+                    <div
+                      key={cat._id}
+                      className="px-4 py-2 hover:bg-[#f9fcfa] cursor-pointer border-b text-gray-800"
+                    >
+                      {cat.name}
+                    </div>
+                  ))}
+                </div>
+              )}
+            </div>
+          </div>
         </div>
 
         {/* Right side: category dropdown */}
-        <div className="relative mt-8 md:mt-0">
-          <button
-            onClick={() => setShowDropdown((prev) => !prev)}
-            className="btn-outline bg-white hover:bg-[#54b689] hover:text-white text-[#07110c] font-medium px-5 py-2 rounded-xl transition"
-          >
-            All Types
-          </button>
-          {showDropdown && (
-            <div className="absolute right-0 mt-2 bg-white shadow-lg rounded-md w-48 max-h-60 overflow-y-auto z-50">
-              {categories.map((cat) => (
-                <div
-                  key={cat._id}
-                  className="px-4 py-2 hover:bg-[#f9fcfa] cursor-pointer border-b text-gray-800"
-                >
-                  {cat.name}
-                </div>
-              ))}
-            </div>
-          )}
-        </div>
       </div>
 
       {/* Corner Icons and Content */}

@@ -5,6 +5,8 @@ import SignUp from "../pages/SignUp/SignUp";
 import Login from "../pages/Login/Login";
 import CreateSkill from "../pages/CreateSkill/CreateSkill";
 import ErrorPage from "../pages/ErrorPage/ErrorPage";
+import PrivateRouter from "./PrivateRouter";
+import SkillDetails from "../components/Home/SkillDetails/SkillDetails";
 
 const router = createBrowserRouter([
   {
@@ -26,7 +28,19 @@ const router = createBrowserRouter([
       },
       {
         path: "/createSkill",
-        element: <CreateSkill />,
+        element: (
+          <PrivateRouter>
+            <CreateSkill />
+          </PrivateRouter>
+        ),
+      },
+      {
+        path: "/skillDetails/:id",
+        element: (
+          <PrivateRouter>
+            <SkillDetails />
+          </PrivateRouter>
+        ),
       },
     ],
   },
