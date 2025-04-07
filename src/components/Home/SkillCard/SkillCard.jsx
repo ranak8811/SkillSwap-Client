@@ -26,7 +26,7 @@ const SkillCard = ({ skill }) => {
 
   return (
     <div
-      onClick={() => navigate(`/skill/${_id}`)}
+      onClick={() => navigate(`/skillDetails/${_id}`)}
       className="cursor-pointer rounded-2xl overflow-hidden bg-white shadow-md hover:shadow-xl transition-all duration-300 border border-[#f0f0f0] max-w-xl mx-auto"
     >
       {/* Image */}

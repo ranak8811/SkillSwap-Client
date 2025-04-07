@@ -1,5 +1,6 @@
 import axios from "axios";
 
+// upload image and get image url from imgbb server
 export const imageUpload = async (imageData) => {
   const formData = new FormData();
   formData.append("image", imageData);
@@ -14,14 +15,14 @@ export const imageUpload = async (imageData) => {
   return image_url;
 };
 
+// get users information and save them to mongodb database
 export const saveUserToDatabase = async (user) => {
-  // Ensure all expected fields are passed from SignUp.jsx
   await axios.post(`${import.meta.env.VITE_API_URL}/users/${user?.email}`, {
     name: user?.displayName,
     image: user?.photoURL,
     email: user?.email,
-    location: user?.location || "User location", // Add location
-    bio: user?.bio || "User bio", // Add bio
+    location: user?.location || "User location",
+    bio: user?.bio || "User bio",
     timestamp: new Date().toISOString(), // Pass timestamp if needed by backend
   });
 };
