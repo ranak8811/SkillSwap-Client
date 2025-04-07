@@ -126,7 +126,7 @@ const Banner = () => {
                 onClick={() => setShowDropdown((prev) => !prev)}
                 className="btn-outline bg-white hover:bg-[#54b689] hover:text-white text-[#07110c] font-medium px-6 py-3 rounded-xl transition"
               >
-                All Types
+                All Categories
               </button>
               {showDropdown && (
                 <div className="absolute right-0 mt-2 bg-white shadow-lg rounded-md w-48 max-h-60 overflow-y-auto z-50">
