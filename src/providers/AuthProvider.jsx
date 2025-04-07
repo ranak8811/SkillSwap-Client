@@ -31,8 +31,22 @@ const AuthProvider = ({ children }) => {
     return createUserWithEmailAndPassword(auth, email, password);
   };
 
-  const updateUserProfile = (updatedData) => {
-    return updateProfile(auth.currentUser, updatedData);
+  const updateUserProfile = async (updatedData) => {
+    // Ensure there is a current user before attempting to update
+    if (auth.currentUser) {
+      await updateProfile(auth.currentUser, updatedData);
+      // Manually update the user state to reflect the changes immediately
+      setUser((prevUser) => ({
+        ...prevUser, // Keep existing user properties
+        ...updatedData, // Overwrite with new display name and photo URL
+      }));
+      // No need to return the promise here unless specifically needed elsewhere
+    } else {
+      // Handle the case where there is no logged-in user
+      toast.error("No user logged in to update profile.");
+      // Optionally throw an error or return a specific value
+      throw new Error("No user logged in");
+    }
   };
 
   const loginRegisteredUser = (email, password) => {

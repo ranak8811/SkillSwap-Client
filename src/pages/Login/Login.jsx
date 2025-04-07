@@ -4,10 +4,11 @@ import Lottie from "lottie-react";
 import useAuth from "../../hooks/useAuth";
 import { FaEye, FaEyeSlash } from "react-icons/fa";
 import { toast } from "react-hot-toast";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import SocialLogin from "../../components/SocialLogin/SocialLogin";
 
 const Login = () => {
+  const navigate = useNavigate();
   const { setUser, loginRegisteredUser } = useAuth();
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -23,6 +24,7 @@ const Login = () => {
       const result = await loginRegisteredUser(email, password);
       setUser(result?.user);
       toast.success("Login successful!");
+      navigate(location?.state ? location.state : "/");
     } catch (error) {
       toast.error("Invalid email or password.");
       console.log(error);

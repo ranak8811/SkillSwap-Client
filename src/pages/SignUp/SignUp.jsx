@@ -5,16 +5,19 @@ import registerLottieData from "../../assets/lottie/register.json";
 import { imageUpload, saveUserToDatabase } from "../../api/utils";
 import toast from "react-hot-toast";
 import useAuth from "../../hooks/useAuth";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import SocialLogin from "../../components/SocialLogin/SocialLogin";
 
 const SignUp = () => {
+  const navigate = useNavigate();
   const { registerNewUser, updateUserProfile } = useAuth();
   const [data, setData] = useState({
     name: "",
     email: "",
     password: "",
     image: null,
+    location: "", // Added location state
+    bio: "", // Added bio state
   });
   const [errors, setErrors] = useState({});
   const [showPassword, setShowPassword] = useState(false);
@@ -33,6 +36,9 @@ const SignUp = () => {
         "Password must be at least 6 characters and include one uppercase letter, one lowercase letter, one number, and one special character";
     }
     if (!data.image) newErrors.image = "Profile image is required";
+    // Optional validation for new fields (can be added if needed)
+    if (!data.location.trim()) newErrors.location = "Location is required";
+    if (!data.bio.trim()) newErrors.bio = "Bio is required";
     setErrors(newErrors);
     return Object.keys(newErrors).length === 0;
   };
@@ -56,13 +62,25 @@ const SignUp = () => {
       // Now update the profile for the newly created user
       await updateUserProfile({ displayName: data?.name, photoURL });
       await saveUserToDatabase({
-        name: data?.name,
+        displayName: data?.name,
         email: data?.email,
         photoURL,
+        location: data?.location, // Added location
+        bio: data?.bio, // Added bio
+        timestamp: new Date().toISOString(),
       });
-      console.log(data);
-      console.log(photoURL);
+      // console.log(data); // Keep or remove logging as needed
+      // console.log(photoURL);
       toast.success("Registration successful!");
+      setData({
+        name: "",
+        email: "",
+        password: "",
+        image: null,
+        location: "", // Added location state
+        bio: "", // Added bio state
+      });
+      navigate("/");
     } catch (error) {
       toast.error("Failed to register. Try again.");
       console.log(error);
@@ -135,7 +153,32 @@ const SignUp = () => {
             <p className="text-red-500 text-sm">{errors.image}</p>
           )}
 
-          <button className="btn bg-[#54b689] text-white w-full">
+          {/* Location Input */}
+          <input
+            type="text"
+            name="location"
+            placeholder="Your Location (e.g., City, Country)"
+            className="input input-bordered w-full"
+            value={data.location}
+            onChange={handleInputChange}
+          />
+          {/* Optional error display for location */}
+          {errors.location && (
+            <p className="text-red-500 text-sm">{errors.location}</p>
+          )}
+
+          {/* Bio Textarea */}
+          <textarea
+            name="bio"
+            placeholder="Tell us a bit about yourself..."
+            className="textarea textarea-bordered w-full h-24" // Adjusted height
+            value={data.bio}
+            onChange={handleInputChange}
+          ></textarea>
+          {/* Optional error display for bio */}
+          {errors.bio && <p className="text-red-500 text-sm">{errors.bio}</p>}
+
+          <button className="btn bg-[#54b689] hover:bg-[#4aa57c] text-white w-full transition duration-300 ease-in-out transform hover:scale-105">
             Sign Up
           </button>
         </form>

@@ -15,9 +15,13 @@ export const imageUpload = async (imageData) => {
 };
 
 export const saveUserToDatabase = async (user) => {
+  // Ensure all expected fields are passed from SignUp.jsx
   await axios.post(`${import.meta.env.VITE_API_URL}/users/${user?.email}`, {
     name: user?.displayName,
     image: user?.photoURL,
     email: user?.email,
+    location: user?.location || "User location", // Add location
+    bio: user?.bio || "User bio", // Add bio
+    timestamp: new Date().toISOString(), // Pass timestamp if needed by backend
   });
 };

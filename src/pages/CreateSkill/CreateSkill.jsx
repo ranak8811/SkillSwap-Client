@@ -1,12 +1,12 @@
 import React, { useState } from "react";
 import useAuth from "../../hooks/useAuth";
-import { useQuery } from "@tanstack/react-query";
-import axios from "axios";
 import LoadingPage from "../LoadingPage/LoadingPage";
 import { imageUpload } from "../../api/utils";
 import toast from "react-hot-toast";
+import useCategories from "../../hooks/useCategories";
+import axios from "axios";
 
-const defaultCategories = ["Programming", "Teaching", "Gardening"];
+// const defaultCategories = ["Programming", "Teaching", "Gardening"];
 
 const CreateSkill = () => {
   const { user } = useAuth();
@@ -20,19 +20,12 @@ const CreateSkill = () => {
   });
   const [isSubmitting, setIsSubmitting] = useState(false);
 
-  // Uncomment this when categories collection is ready
-  // const { data: tags = [], isLoading } = useQuery({
-  //   queryKey: ["tags"],
-  //   queryFn: async () => {
-  //     const { data } = await axios(`${import.meta.env.VITE_API_URL}/categories`);
-  //     return data;
-  //   },
-  // });
+  const [categories, isLoading] = useCategories();
 
-  // if (isLoading) return <LoadingPage />;
+  if (isLoading) return <LoadingPage />;
 
   const handleChange = (e) => {
-    const { name, value, type, checked } = e.target;
+    const { name, value, checked } = e.target;
     if (name === "swapWith") {
       const updatedSwapWith = checked
         ? [...formData.swapWith, value]
@@ -138,9 +131,9 @@ const CreateSkill = () => {
             className="select select-bordered w-full border-secondaryy"
           >
             <option value="">Select Category</option>
-            {defaultCategories.map((cat) => (
-              <option key={cat} value={cat}>
-                {cat}
+            {categories.map((cat) => (
+              <option key={cat._id} value={cat.name}>
+                {cat.name}
               </option>
             ))}
           </select>
@@ -151,17 +144,17 @@ const CreateSkill = () => {
             Swap With (Select one or more)
           </label>
           <div className="flex flex-wrap gap-2">
-            {defaultCategories.map((cat) => (
-              <label key={cat} className="label cursor-pointer">
+            {categories.map((cat) => (
+              <label key={cat._id} className="label cursor-pointer">
                 <input
                   type="checkbox"
                   name="swapWith"
-                  value={cat}
-                  checked={formData.swapWith.includes(cat)}
+                  value={cat.name}
+                  checked={formData.swapWith.includes(cat.name)}
                   onChange={handleChange}
                   className="checkbox checkbox-sm checkbox-primaryy"
                 />
-                <span className="ml-2">{cat}</span>
+                <span className="ml-2">{cat.name}</span>
               </label>
             ))}
           </div>
