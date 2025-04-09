@@ -7,6 +7,11 @@ import CreateSkill from "../pages/CreateSkill/CreateSkill";
 import ErrorPage from "../pages/ErrorPage/ErrorPage";
 import PrivateRouter from "./PrivateRouter";
 import SkillDetails from "../components/Home/SkillDetails/SkillDetails";
+import DashboardLayout from "../layouts/DashboardLayout";
+import DefaultPage from "../pages/Dashboard/DefaultPage/DefaultPage";
+import UserManagement from "../pages/Dashboard/Admin/UserManagement";
+import UserProfile from "../pages/Dashboard/User/UserProfile/UserProfile";
+import SavedSkills from "../pages/Dashboard/User/SavedSkills/SavedSkills";
 
 const router = createBrowserRouter([
   {
@@ -39,6 +44,49 @@ const router = createBrowserRouter([
         element: (
           <PrivateRouter>
             <SkillDetails />
+          </PrivateRouter>
+        ),
+      },
+    ],
+  },
+  {
+    path: "/dashboard",
+    element: (
+      <PrivateRouter>
+        <DashboardLayout />
+      </PrivateRouter>
+    ),
+    errorElement: <ErrorPage />,
+    children: [
+      {
+        path: "",
+        element: (
+          <PrivateRouter>
+            <DefaultPage />
+          </PrivateRouter>
+        ),
+      },
+      {
+        path: "/dashboard/myProfile",
+        element: (
+          <PrivateRouter>
+            <UserProfile />
+          </PrivateRouter>
+        ),
+      },
+      {
+        path: "/dashboard/admin/manageUsers",
+        element: (
+          <PrivateRouter>
+            <UserManagement />
+          </PrivateRouter>
+        ),
+      },
+      {
+        path: "/dashboard/user/savedSkills",
+        element: (
+          <PrivateRouter>
+            <SavedSkills />
           </PrivateRouter>
         ),
       },

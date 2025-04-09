@@ -78,8 +78,8 @@ const Login = () => {
           <button
             className="btn btn-outline w-full flex items-center justify-center mt-2"
             onClick={() => {
-              setEmail("admin@example.com");
-              setPassword("Admin@123");
+              setEmail("hayaomiyazaki@gmail.com");
+              setPassword("BlUe$ky9Ant");
             }}
           >
             Use Admin Credentials
@@ -88,8 +88,8 @@ const Login = () => {
           <button
             className="btn btn-outline w-full flex items-center justify-center mt-2"
             onClick={() => {
-              setEmail("user@example.com");
-              setPassword("User@123");
+              setEmail("anwarhossain@gmail.com");
+              setPassword("Str0ng!Key");
             }}
           >
             Use User Credentials

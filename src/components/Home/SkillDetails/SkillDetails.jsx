@@ -13,13 +13,13 @@ const SkillDetails = () => {
   const navigate = useNavigate();
   const { user } = useAuth();
   const { id } = useParams();
-  const [skill, isLoading] = useSingleSkill(id);
-  const [skills] = useSkillsByEmail(user?.email);
+  const [skill, isSkillLoading] = useSingleSkill(id);
+  const [skills, isSkillsLoading] = useSkillsByEmail(user?.email);
   const [selectedSkillId, setSelectedSkillId] = useState("");
   const [message, setMessage] = useState("");
   const [isModalOpen, setIsModalOpen] = useState(false);
 
-  if (isLoading) return <LoadingPage />;
+  if (isSkillLoading || isSkillsLoading) return <LoadingPage />;
 
   const {
     _id,
@@ -37,9 +37,10 @@ const SkillDetails = () => {
   } = skill;
 
   let desiredType = type === "offer" ? "request" : "offer";
-  const filteredSkills = skills.filter(
-    (s) => s.type === desiredType && s.available === true
-  );
+  // Ensure skills is an array before filtering
+  const filteredSkills = Array.isArray(skills)
+    ? skills.filter((s) => s.type === desiredType && s.available === true)
+    : [];
 
   const handleExchange = async () => {
     if (!selectedSkillId || !message) {

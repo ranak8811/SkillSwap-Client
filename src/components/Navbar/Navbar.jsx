@@ -101,21 +101,8 @@ const Navbar = () => {
                   </Link>
                 </li>
                 <li>
-                  <Link
-                    to="/dashboard/add-skill"
-                    className="flex items-center gap-2"
-                  >
-                    <FaPlus /> Add Skill
-                  </Link>
-                </li>
-                <li>
                   <Link to="/createSkill" className="flex items-center gap-2">
-                    <FaPlus /> Create Skill
-                  </Link>
-                </li>
-                <li>
-                  <Link to="/profile" className="flex items-center gap-2">
-                    <FaUser /> Profile
+                    <FaPlus /> Add Skill
                   </Link>
                 </li>
                 <li>

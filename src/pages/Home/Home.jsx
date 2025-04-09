@@ -9,6 +9,7 @@ import { GoSearch } from "react-icons/go";
 
 const Home = () => {
   const { user } = useAuth();
+
   const [search, setSearch] = useState("");
   const [debouncedSearch, setDebouncedSearch] = useState(""); // debounced value
   const [currentPage, setCurrentPage] = useState(0);

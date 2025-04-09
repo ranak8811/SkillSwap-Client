@@ -1,8 +1,10 @@
 import React from "react";
 import { format } from "date-fns";
 import { useNavigate } from "react-router-dom";
+import axios from "axios";
+import toast from "react-hot-toast";
 
-const SkillCard = ({ skill }) => {
+const SkillCard = ({ skill, user }) => {
   const {
     _id,
     title,
@@ -14,6 +16,7 @@ const SkillCard = ({ skill }) => {
     creatorName,
     creatorImage,
     createdAt,
+    creatorEmail,
   } = skill;
 
   const navigate = useNavigate();
@@ -22,6 +25,24 @@ const SkillCard = ({ skill }) => {
   const truncateDescription = (text) => {
     const words = text.split(" ");
     return words.length > 20 ? words.slice(0, 20).join(" ") + "..." : text;
+  };
+
+  const saveSkillToDB = async (id) => {
+    const saveSkillData = {
+      skillId: id,
+      savedUserEmail: user?.email,
+      skillTitle: title,
+      skillCategory: category,
+    };
+    try {
+      await axios.post(
+        `${import.meta.env.VITE_API_URL}/save-skill`,
+        saveSkillData
+      );
+      toast.success("Skill added to the save list successfully");
+    } catch (error) {
+      toast.error("Failed to saved the skill: ", error);
+    }
   };
 
   return (
@@ -79,15 +100,26 @@ const SkillCard = ({ skill }) => {
         </div>
 
         {/* Creator */}
-        <div className="flex items-center gap-3 pt-2">
-          <img
-            src={creatorImage}
-            alt={creatorName}
-            className="w-10 h-10 rounded-full object-cover"
-          />
-          <span className="text-sm font-medium text-gray-800">
-            {creatorName}
-          </span>
+        <div className="flex items-center justify-between gap-3 pt-2">
+          <div className="flex items-center gap-3 pt-2">
+            <img
+              src={creatorImage}
+              alt={creatorName}
+              className="w-10 h-10 rounded-full object-cover"
+            />
+            <span className="text-sm font-medium text-gray-800">
+              {creatorName}
+            </span>
+          </div>
+
+          {creatorEmail !== user?.email && (
+            <button
+              onClick={() => saveSkillToDB(_id)}
+              className="btn btn-outline"
+            >
+              Save it for later
+            </button>
+          )}
         </div>
       </div>
     </div>
