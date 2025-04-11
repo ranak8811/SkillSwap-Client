@@ -98,6 +98,7 @@ const SavedSkills = () => {
         <table className="table w-full border">
           <thead className="bg-gray-100 text-gray-700">
             <tr>
+              <th>#</th>
               <th>Title</th>
               <th>Category</th>
               <th>Actions</th>
@@ -106,19 +107,20 @@ const SavedSkills = () => {
           <tbody>
             {savedSkills.length === 0 ? (
               <tr>
-                <td colSpan="3" className="text-center py-4">
+                <td colSpan="4" className="text-center py-4">
                   No saved skills found.
                 </td>
               </tr>
             ) : (
-              savedSkills.map((skill) => (
+              savedSkills.map((skill, index) => (
                 <tr key={skill._id}>
+                  <td>{index + 1}</td>
                   <td>{skill.skillTitle}</td>
                   <td>{skill.skillCategory}</td>
                   <td className="flex gap-3">
                     <button
                       onClick={() => navigate(`/skillDetails/${skill.skillId}`)}
-                      className="btn btn-sm bg-blue-500 text-white"
+                      className="btn btn-sm bg-[#54b689] text-white"
                     >
                       See Details
                     </button>

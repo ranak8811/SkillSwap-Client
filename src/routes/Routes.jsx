@@ -12,6 +12,7 @@ import DefaultPage from "../pages/Dashboard/DefaultPage/DefaultPage";
 import UserManagement from "../pages/Dashboard/Admin/UserManagement";
 import UserProfile from "../pages/Dashboard/User/UserProfile/UserProfile";
 import SavedSkills from "../pages/Dashboard/User/SavedSkills/SavedSkills";
+import ExchangeRequests from "../pages/Dashboard/User/ExchangeRequests/ExchangeRequests";
 
 const router = createBrowserRouter([
   {
@@ -87,6 +88,14 @@ const router = createBrowserRouter([
         element: (
           <PrivateRouter>
             <SavedSkills />
+          </PrivateRouter>
+        ),
+      },
+      {
+        path: "/dashboard/user/exchangeRequests",
+        element: (
+          <PrivateRouter>
+            <ExchangeRequests />
           </PrivateRouter>
         ),
       },

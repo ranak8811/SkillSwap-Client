@@ -7,7 +7,12 @@ import useSkillsByEmail from "../../../hooks/useSkillsByEmail";
 import { format } from "date-fns";
 import axios from "axios";
 import toast from "react-hot-toast";
-import { FaEnvelope, FaExchangeAlt, FaCheckCircle } from "react-icons/fa";
+import {
+  FaEnvelope,
+  FaExchangeAlt,
+  FaCheckCircle,
+  FaCross,
+} from "react-icons/fa";
 
 const SkillDetails = () => {
   const navigate = useNavigate();
@@ -101,9 +106,13 @@ const SkillDetails = () => {
             <span className="bg-[#d3a0d6] text-white px-3 py-1 rounded-full capitalize">
               {type}
             </span>
-            {available && (
+            {available ? (
               <span className="text-green-600 font-medium flex items-center gap-1">
                 <FaCheckCircle /> Available
+              </span>
+            ) : (
+              <span className="text-red-600 font-medium flex items-center gap-1">
+                <FaCross /> Not Available
               </span>
             )}
           </div>
@@ -122,12 +131,14 @@ const SkillDetails = () => {
             </div>
           </div>
 
-          <button
-            onClick={() => setIsModalOpen(true)}
-            className="mt-6 bg-[#54b689] hover:bg-[#469e75] text-white px-5 py-2 rounded-full flex items-center gap-2"
-          >
-            <FaExchangeAlt /> Request Exchange
-          </button>
+          {user?.email !== creatorEmail && (
+            <button
+              onClick={() => setIsModalOpen(true)}
+              className="mt-6 bg-[#54b689] hover:bg-[#469e75] text-white px-5 py-2 rounded-full flex items-center gap-2"
+            >
+              <FaExchangeAlt /> Request Exchange
+            </button>
+          )}
         </div>
       </div>
 

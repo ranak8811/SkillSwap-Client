@@ -14,6 +14,7 @@ const userLinks = [
   { path: "/dashboard/myProfile", name: "My Profile" },
   { path: "/createSkill", name: "Add Skill" },
   { path: "/dashboard/user/savedSkills", name: "Saved Skills" },
+  { path: "/dashboard/user/exchangeRequests", name: "Exchange Requests" },
 ];
 
 const adminLinks = [
