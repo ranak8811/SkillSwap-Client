@@ -1,53 +1,40 @@
 import React, { useState } from "react";
 import Sidebar from "../components/Sidebar/Sidebar";
-import { Link, Outlet } from "react-router-dom";
-import logo from "../assets/skill.png"; // Assuming logo path is correct
-import { FaBars, FaTimes } from "react-icons/fa"; // Icons for toggle
+import { Outlet } from "react-router-dom";
+import { FaBars, FaTimes } from "react-icons/fa";
 
 const DashboardLayout = () => {
-  const [isSidebarOpen, setIsSidebarOpen] = useState(false); // Default to not open
+  const [isSidebarOpen, setIsSidebarOpen] = useState(false);
 
   const toggleSidebar = () => {
     setIsSidebarOpen(!isSidebarOpen);
   };
 
   return (
-    <section className="flex h-screen bg-gray-100">
-      {/* Sidebar */}
+    <section className="relative md:flex h-screen bg-gray-100">
       <Sidebar isSidebarOpen={isSidebarOpen} />
 
-      {/* Main Content Area */}
       <div className="flex-1 flex flex-col overflow-hidden">
-        {/* Header Bar */}
-        <header className="bg-white shadow-md p-4 flex items-center justify-between">
-          {/* Left side: Toggle Button and Logo/Name */}
-          <div className="flex items-center gap-4">
-            <button onClick={toggleSidebar} className="text-gray-600 text-2xl">
-              {isSidebarOpen ? <FaTimes /> : <FaBars />}
-            </button>
-            {/* Show logo/name here only if sidebar is closed or on small screens where sidebar overlays */}
-            {/* Or always show it as requested */}
-            <div className="">
-              <Link to={"/"} className="flex items-center gap-2">
-                <img src={logo} alt="SkillSwap Logo" className="w-8 h-8" />
-                <span className="text-xl font-bold text-primaryy hidden sm:inline">
-                  SkillSwap
-                </span>
-              </Link>
-            </div>
-          </div>
+        <header className="bg-white shadow-md p-4 flex items-center justify-end relative z-10">
+          <div className="flex-1"></div>
 
-          {/* Optional: Right side of header (e.g., notifications, user menu) */}
-          <div>{/* Placeholder for other header content */}</div>
+          <button
+            onClick={toggleSidebar}
+            className="text-gray-600 text-2xl md:hidden"
+          >
+            {isSidebarOpen ? <FaTimes /> : <FaBars />}
+          </button>
         </header>
 
-        {/* Page Content */}
-        <main
-          className={`flex-1 overflow-x-hidden overflow-y-auto bg-gray-100 p-6 transition-all duration-300 ease-in-out ${
-            isSidebarOpen ? "ml-0 md:ml-64" : "ml-0" // Adjust margin based on sidebar state for medium screens and up
-          }`}
-        >
+        <main className="flex-1 overflow-x-hidden overflow-y-auto bg-gray-100 p-6">
           <Outlet />
+
+          {isSidebarOpen && (
+            <div
+              className="fixed inset-0 bg-black bg-opacity-50 z-20 md:hidden"
+              onClick={toggleSidebar}
+            ></div>
+          )}
         </main>
       </div>
     </section>

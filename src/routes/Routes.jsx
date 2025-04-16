@@ -14,6 +14,7 @@ import UserProfile from "../pages/Dashboard/User/UserProfile/UserProfile";
 import SavedSkills from "../pages/Dashboard/User/SavedSkills/SavedSkills";
 import ExchangeRequests from "../pages/Dashboard/User/ExchangeRequests/ExchangeRequests";
 import TaskFeedback from "../pages/Dashboard/User/TaskFeedback/TaskFeedback";
+import TrendingSkills from "../pages/TrendingSkills/TrendingSkills";
 
 const router = createBrowserRouter([
   {
@@ -46,6 +47,14 @@ const router = createBrowserRouter([
         element: (
           <PrivateRouter>
             <SkillDetails />
+          </PrivateRouter>
+        ),
+      },
+      {
+        path: "/trending",
+        element: (
+          <PrivateRouter>
+            <TrendingSkills />
           </PrivateRouter>
         ),
       },
