@@ -11,8 +11,16 @@ import {
   FaEnvelope,
   FaExchangeAlt,
   FaCheckCircle,
-  FaCross,
+  FaTimesCircle,
+  FaShareAlt,
 } from "react-icons/fa";
+import { useQuery } from "@tanstack/react-query";
+import {
+  FacebookShareButton,
+  WhatsappShareButton,
+  FacebookIcon,
+  WhatsappIcon,
+} from "react-share";
 
 const SkillDetails = () => {
   const navigate = useNavigate();
@@ -24,7 +32,17 @@ const SkillDetails = () => {
   const [message, setMessage] = useState("");
   const [isModalOpen, setIsModalOpen] = useState(false);
 
-  if (isSkillLoading || isSkillsLoading) return <LoadingPage />;
+  const { data: reviewsAndReports = {}, isLoading } = useQuery({
+    queryKey: ["reviewsAndReports"],
+    queryFn: async () => {
+      const { data } = await axios(
+        `${import.meta.env.VITE_API_URL}/reviews-and-reports/${id}`
+      );
+      return data;
+    },
+  });
+
+  if (isSkillLoading || isSkillsLoading || isLoading) return <LoadingPage />;
 
   const {
     _id,
@@ -41,8 +59,9 @@ const SkillDetails = () => {
     createdAt,
   } = skill;
 
+  const skillUrl = window.location.href;
+
   let desiredType = type === "offer" ? "request" : "offer";
-  // Ensure skills is an array before filtering
   const filteredSkills = Array.isArray(skills)
     ? skills.filter((s) => s.type === desiredType && s.available === true)
     : [];
@@ -78,6 +97,8 @@ const SkillDetails = () => {
     }
   };
 
+  const { reviews, reports } = reviewsAndReports;
+
   return (
     <div className="max-w-5xl mx-auto p-4 text-[#07110c]">
       <div className="bg-white shadow-md rounded-2xl overflow-hidden">
@@ -112,7 +133,7 @@ const SkillDetails = () => {
               </span>
             ) : (
               <span className="text-red-600 font-medium flex items-center gap-1">
-                <FaCross /> Not Available
+                <FaTimesCircle /> Not Available
               </span>
             )}
           </div>
@@ -131,14 +152,23 @@ const SkillDetails = () => {
             </div>
           </div>
 
-          {user?.email !== creatorEmail && (
-            <button
-              onClick={() => setIsModalOpen(true)}
-              className="mt-6 bg-[#54b689] hover:bg-[#469e75] text-white px-5 py-2 rounded-full flex items-center gap-2"
-            >
-              <FaExchangeAlt /> Request Exchange
-            </button>
-          )}
+          <div className="flex flex-wrap gap-4 items-center mt-6">
+            {user?.email !== creatorEmail && (
+              <button
+                onClick={() => setIsModalOpen(true)}
+                className="bg-[#54b689] hover:bg-[#469e75] text-white px-5 py-2 rounded-full flex items-center gap-2"
+              >
+                <FaExchangeAlt /> Request Exchange
+              </button>
+            )}
+
+            <FacebookShareButton url={skillUrl} quote={title}>
+              <FacebookIcon size={32} round />
+            </FacebookShareButton>
+            <WhatsappShareButton url={skillUrl} title={title}>
+              <WhatsappIcon size={32} round />
+            </WhatsappShareButton>
+          </div>
         </div>
       </div>
 
@@ -199,6 +229,38 @@ const SkillDetails = () => {
               </button>
             </div>
           </div>
+        </div>
+      )}
+
+      {/* Reviews Section */}
+      {reviews?.length > 0 && (
+        <div className="mt-10 bg-white p-4 rounded-xl shadow">
+          <h3 className="text-xl font-bold mb-4">Reviews</h3>
+          <ul className="space-y-3">
+            {reviews.map((rev) => (
+              <li key={rev._id} className="border-b pb-2">
+                <p className="font-semibold">Rating: {rev.rating}/5</p>
+                <p className="text-sm">Comment: {rev.comment}</p>
+              </li>
+            ))}
+          </ul>
+        </div>
+      )}
+
+      {/* Reports Section */}
+      {reports?.length > 0 && (
+        <div className="mt-10 bg-white p-4 rounded-xl shadow">
+          <h3 className="text-xl font-bold mb-4 text-red-600">Reports</h3>
+          <ul className="space-y-3">
+            {reports.map((rep) => (
+              <li key={rep._id} className="border-b pb-2">
+                <p className="font-semibold">
+                  Reported by: {rep.reporterEmail}
+                </p>
+                <p className="text-sm text-red-500">Reason: {rep.reason}</p>
+              </li>
+            ))}
+          </ul>
         </div>
       )}
     </div>
