@@ -16,13 +16,15 @@ const userLinks = [
   { path: "/dashboard/user/savedSkills", name: "Saved Skills" },
   { path: "/dashboard/user/exchangeRequests", name: "Exchange Requests" },
   { path: "/dashboard/user/taskFeedback", name: "Tasks Feedback" },
+  { path: "/dashboard/user/mySuggestion", name: "My Suggestion" },
 ];
 
 const adminLinks = [
   { path: "/dashboard/myProfile", name: "My Profile" },
   { path: "/dashboard/admin/manageUsers", name: "Manage Users" },
-  { path: "/dashboard/admin/manageSkills", name: "Manage Skills" },
+  { path: "/dashboard/admin/manageCategories", name: "Manage Categories" },
   { path: "/dashboard/admin/userReports", name: "User Reports" },
+  { path: "/dashboard/admin/userSuggestions", name: "User Suggestions" },
 ];
 
 const Sidebar = ({ isSidebarOpen }) => {

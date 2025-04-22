@@ -16,6 +16,10 @@ import ExchangeRequests from "../pages/Dashboard/User/ExchangeRequests/ExchangeR
 import TaskFeedback from "../pages/Dashboard/User/TaskFeedback/TaskFeedback";
 import TrendingSkills from "../pages/TrendingSkills/TrendingSkills";
 import UserReports from "../pages/Dashboard/Admin/UserReports";
+import ManageCategories from "../pages/Dashboard/Admin/ManageCategories";
+import AboutUs from "../pages/AboutUs/AboutUs";
+import MySuggestion from "../pages/Dashboard/User/MySuggestion/MySuggestion";
+import UserSuggestions from "../pages/Dashboard/Admin/UserSuggestions";
 
 const router = createBrowserRouter([
   {
@@ -36,6 +40,10 @@ const router = createBrowserRouter([
         element: <SignUp />,
       },
       {
+        path: "/aboutUs",
+        element: <AboutUs />,
+      },
+      {
         path: "/createSkill",
         element: (
           <PrivateRouter>
@@ -53,11 +61,7 @@ const router = createBrowserRouter([
       },
       {
         path: "/trending",
-        element: (
-          <PrivateRouter>
-            <TrendingSkills />
-          </PrivateRouter>
-        ),
+        element: <TrendingSkills />,
       },
     ],
   },
@@ -103,6 +107,22 @@ const router = createBrowserRouter([
         ),
       },
       {
+        path: "/dashboard/admin/manageCategories",
+        element: (
+          <PrivateRouter>
+            <ManageCategories />
+          </PrivateRouter>
+        ),
+      },
+      {
+        path: "/dashboard/admin/userSuggestions",
+        element: (
+          <PrivateRouter>
+            <UserSuggestions />
+          </PrivateRouter>
+        ),
+      },
+      {
         path: "/dashboard/user/savedSkills",
         element: (
           <PrivateRouter>
@@ -123,6 +143,14 @@ const router = createBrowserRouter([
         element: (
           <PrivateRouter>
             <TaskFeedback />
+          </PrivateRouter>
+        ),
+      },
+      {
+        path: "/dashboard/user/mySuggestion",
+        element: (
+          <PrivateRouter>
+            <MySuggestion />
           </PrivateRouter>
         ),
       },

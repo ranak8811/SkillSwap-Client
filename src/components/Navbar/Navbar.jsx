@@ -13,7 +13,7 @@ const Navbar = () => {
   const navItems = [
     { name: "Home", path: "/" },
     { name: "Dashboard", path: "/dashboard" },
-    { name: "About Us", path: "/about" },
+    { name: "About Us", path: "/aboutUs" },
     { name: "Trending Skills", path: "/trending" },
   ];
 
@@ -95,11 +95,13 @@ const Navbar = () => {
                 <li className="text-center font-semibold text-textt">
                   {user?.displayName}
                 </li>
+
                 <li>
                   <Link to="/dashboard" className="flex items-center gap-2">
                     <FaTachometerAlt /> Dashboard
                   </Link>
                 </li>
+
                 <li>
                   <Link to="/createSkill" className="flex items-center gap-2">
                     <FaPlus /> Add Skill
