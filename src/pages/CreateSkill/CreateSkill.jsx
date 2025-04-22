@@ -5,11 +5,13 @@ import { imageUpload } from "../../api/utils";
 import toast from "react-hot-toast";
 import useCategories from "../../hooks/useCategories";
 import axios from "axios";
+import { useNavigate } from "react-router-dom";
 
 // const defaultCategories = ["Programming", "Teaching", "Gardening"];
 
 const CreateSkill = () => {
   const { user } = useAuth();
+  const navigate = useNavigate();
   const [formData, setFormData] = useState({
     title: "",
     image: null,
@@ -71,6 +73,7 @@ const CreateSkill = () => {
         type: "offer",
         swapWith: [],
       });
+      navigate("/");
     } catch (error) {
       console.error(error);
       toast.error("Failed to create skill");

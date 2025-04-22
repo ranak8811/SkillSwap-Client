@@ -15,6 +15,7 @@ import SavedSkills from "../pages/Dashboard/User/SavedSkills/SavedSkills";
 import ExchangeRequests from "../pages/Dashboard/User/ExchangeRequests/ExchangeRequests";
 import TaskFeedback from "../pages/Dashboard/User/TaskFeedback/TaskFeedback";
 import TrendingSkills from "../pages/TrendingSkills/TrendingSkills";
+import UserReports from "../pages/Dashboard/Admin/UserReports";
 
 const router = createBrowserRouter([
   {
@@ -90,6 +91,14 @@ const router = createBrowserRouter([
         element: (
           <PrivateRouter>
             <UserManagement />
+          </PrivateRouter>
+        ),
+      },
+      {
+        path: "/dashboard/admin/userReports",
+        element: (
+          <PrivateRouter>
+            <UserReports />
           </PrivateRouter>
         ),
       },

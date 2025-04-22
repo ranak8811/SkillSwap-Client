@@ -21,10 +21,12 @@ import {
   FacebookIcon,
   WhatsappIcon,
 } from "react-share";
+import useRole from "../../../hooks/useRole";
 
 const SkillDetails = () => {
   const navigate = useNavigate();
   const { user } = useAuth();
+  const [role] = useRole();
   const { id } = useParams();
   const [skill, isSkillLoading] = useSingleSkill(id);
   const [skills, isSkillsLoading] = useSkillsByEmail(user?.email);
@@ -153,7 +155,7 @@ const SkillDetails = () => {
           </div>
 
           <div className="flex flex-wrap gap-4 items-center mt-6">
-            {user?.email !== creatorEmail && (
+            {user?.email !== creatorEmail && role !== "admin" && available && (
               <button
                 onClick={() => setIsModalOpen(true)}
                 className="bg-[#54b689] hover:bg-[#469e75] text-white px-5 py-2 rounded-full flex items-center gap-2"

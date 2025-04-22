@@ -22,6 +22,7 @@ const adminLinks = [
   { path: "/dashboard/myProfile", name: "My Profile" },
   { path: "/dashboard/admin/manageUsers", name: "Manage Users" },
   { path: "/dashboard/admin/manageSkills", name: "Manage Skills" },
+  { path: "/dashboard/admin/userReports", name: "User Reports" },
 ];
 
 const Sidebar = ({ isSidebarOpen }) => {
