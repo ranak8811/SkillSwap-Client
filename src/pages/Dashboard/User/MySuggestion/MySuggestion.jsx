@@ -2,8 +2,10 @@ import React, { useState } from "react";
 import useAuth from "../../../../hooks/useAuth";
 import toast from "react-hot-toast";
 import axios from "axios";
+import useTitle from "../../../../../public/PageTitle/title";
 
 const MySuggestion = () => {
+  useTitle("My Suggestion");
   const { user } = useAuth();
   const [suggestion, setSuggestion] = useState("");
 

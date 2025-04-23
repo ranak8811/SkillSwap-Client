@@ -11,8 +11,10 @@ import {
   CartesianGrid,
 } from "recharts";
 import LoadingPage from "../LoadingPage/LoadingPage";
+import useTitle from "../../../public/PageTitle/title";
 
 const TrendingSkills = () => {
+  useTitle("Trending Skills");
   const { data: trending = [], isLoading } = useQuery({
     queryKey: ["trendingSkills"],
     queryFn: async () => {

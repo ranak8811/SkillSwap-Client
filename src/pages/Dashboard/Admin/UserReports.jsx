@@ -5,8 +5,10 @@ import LoadingPage from "../../LoadingPage/LoadingPage";
 import { useNavigate } from "react-router-dom";
 import Swal from "sweetalert2";
 import toast from "react-hot-toast";
+import useTitle from "../../../../public/PageTitle/title";
 
 const UserReports = () => {
+  useTitle("User Reports");
   const navigate = useNavigate();
   const [currentPage, setCurrentPage] = useState(1);
   const reportsPerPage = 10;

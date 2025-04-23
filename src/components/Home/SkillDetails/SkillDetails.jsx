@@ -22,8 +22,10 @@ import {
   WhatsappIcon,
 } from "react-share";
 import useRole from "../../../hooks/useRole";
+import useTitle from "../../../../public/PageTitle/title";
 
 const SkillDetails = () => {
+  useTitle("Skill Details");
   const navigate = useNavigate();
   const { user } = useAuth();
   const [role] = useRole();

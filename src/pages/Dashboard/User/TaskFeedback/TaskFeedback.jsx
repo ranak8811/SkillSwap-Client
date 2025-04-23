@@ -5,8 +5,10 @@ import axios from "axios";
 import LoadingPage from "../../../LoadingPage/LoadingPage";
 import { useNavigate } from "react-router-dom";
 import { toast } from "react-hot-toast";
+import useTitle from "../../../../../public/PageTitle/title";
 
 const TaskFeedback = () => {
+  useTitle("Task Feedback");
   const { user } = useAuth();
   const navigate = useNavigate();
   const queryClient = useQueryClient();

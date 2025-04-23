@@ -6,8 +6,10 @@ import LoadingPage from "../LoadingPage/LoadingPage";
 import SkillCard from "../../components/Home/SkillCard/SkillCard";
 import useAuth from "../../hooks/useAuth";
 import { GoSearch } from "react-icons/go";
+import useTitle from "../../../public/PageTitle/title";
 
 const Home = () => {
+  useTitle("Home");
   const { user } = useAuth();
 
   const [search, setSearch] = useState("");

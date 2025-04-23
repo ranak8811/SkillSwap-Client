@@ -1,8 +1,10 @@
 import { useNavigate } from "react-router-dom";
 import Lottie from "lottie-react";
 import errorLottieFile from "../../assets/lottie/error.json";
+import useTitle from "../../../public/PageTitle/title";
 
 const ErrorPage = () => {
+  useTitle("404 - Page Not Found");
   const navigate = useNavigate();
 
   const goBack = () => {

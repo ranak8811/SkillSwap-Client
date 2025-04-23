@@ -6,8 +6,10 @@ import LoadingPage from "../../../LoadingPage/LoadingPage";
 import { useNavigate } from "react-router-dom";
 import Swal from "sweetalert2";
 import toast from "react-hot-toast";
+import useTitle from "../../../../../public/PageTitle/title";
 
 const SavedSkills = () => {
+  useTitle("Saved Skills");
   const { user } = useAuth();
   const navigate = useNavigate();
   const [searchTerm, setSearchTerm] = useState("");

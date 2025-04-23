@@ -1,6 +1,8 @@
 import React from "react";
+import useTitle from "../../../public/PageTitle/title";
 
 const AboutUs = () => {
+  useTitle("About Us");
   return (
     <div className="p-6 max-w-5xl mx-auto text-textt">
       <h1 className="text-4xl font-bold mb-4 text-primaryy">About SkillSwap</h1>

@@ -2,6 +2,7 @@ import React from "react";
 import useRole from "../../../hooks/useRole";
 import useAuth from "../../../hooks/useAuth";
 import LoadingPage from "../../LoadingPage/LoadingPage";
+import useTitle from "../../../../public/PageTitle/title";
 
 // Placeholder icons (replace with actual icons/logos later)
 const ManageUsersIcon = () => <span>[👥]</span>;
@@ -14,6 +15,7 @@ const ExchangeRequestsIcon = () => <span>[🔄]</span>;
 const TaskFeedbackIcon = () => <span>[⭐]</span>;
 
 const DefaultPage = () => {
+  useTitle("Dashboard");
   const { user } = useAuth();
   const [role, isLoading] = useRole();
 

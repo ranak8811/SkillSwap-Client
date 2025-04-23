@@ -5,8 +5,10 @@ import axios from "axios";
 import LoadingPage from "../../../LoadingPage/LoadingPage";
 import { format } from "date-fns";
 import { Dialog } from "@headlessui/react";
+import useTitle from "../../../../../public/PageTitle/title";
 
 const UserProfile = () => {
+  useTitle("My Profile");
   const { user, loading } = useAuth();
   const queryClient = useQueryClient();
   const [isOpen, setIsOpen] = useState(false);

@@ -2,8 +2,10 @@ import React, { useState } from "react";
 import { useQuery } from "@tanstack/react-query";
 import axios from "axios";
 import LoadingPage from "../../LoadingPage/LoadingPage";
+import useTitle from "../../../../public/PageTitle/title";
 
 const UserSuggestions = () => {
+  useTitle("User Suggestions");
   const [searchEmail, setSearchEmail] = useState("");
   const [currentPage, setCurrentPage] = useState(1);
   const suggestionsPerPage = 6;

@@ -6,8 +6,10 @@ import { FaEye, FaEyeSlash } from "react-icons/fa";
 import { toast } from "react-hot-toast";
 import { Link, useNavigate } from "react-router-dom";
 import SocialLogin from "../../components/SocialLogin/SocialLogin";
+import useTitle from "../../../public/PageTitle/title";
 
 const Login = () => {
+  useTitle("Login");
   const navigate = useNavigate();
   const { setUser, loginRegisteredUser } = useAuth();
   const [email, setEmail] = useState("");

@@ -4,8 +4,10 @@ import LoadingPage from "../../LoadingPage/LoadingPage";
 import Swal from "sweetalert2";
 import axios from "axios";
 import toast from "react-hot-toast";
+import useTitle from "../../../../public/PageTitle/title";
 
 const ManageCategories = () => {
+  useTitle("Manage Categories");
   const [categories, isLoading, refetch] = useCategories();
   const [newCategory, setNewCategory] = useState("");
   const [currentPage, setCurrentPage] = useState(1);

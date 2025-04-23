@@ -5,8 +5,10 @@ import Swal from "sweetalert2";
 import toast from "react-hot-toast";
 import LoadingPage from "../../LoadingPage/LoadingPage";
 import { Tooltip } from "react-tooltip";
+import useTitle from "../../../../public/PageTitle/title";
 
 const UserManagement = () => {
+  useTitle("User Management");
   const [search, setSearch] = useState("");
   const [currentPage, setCurrentPage] = useState(1);
   const itemsPerPage = 10;

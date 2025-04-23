@@ -6,10 +6,12 @@ import toast from "react-hot-toast";
 import useCategories from "../../hooks/useCategories";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
+import useTitle from "../../../public/PageTitle/title";
 
 // const defaultCategories = ["Programming", "Teaching", "Gardening"];
 
 const CreateSkill = () => {
+  useTitle("Create Skill");
   const { user } = useAuth();
   const navigate = useNavigate();
   const [formData, setFormData] = useState({

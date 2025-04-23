@@ -7,8 +7,10 @@ import toast from "react-hot-toast";
 import useAuth from "../../hooks/useAuth";
 import { Link, useNavigate } from "react-router-dom";
 import SocialLogin from "../../components/SocialLogin/SocialLogin";
+import useTitle from "../../../public/PageTitle/title";
 
 const SignUp = () => {
+  useTitle("Sign Up");
   const navigate = useNavigate();
   const { registerNewUser, updateUserProfile } = useAuth();
   const [data, setData] = useState({
