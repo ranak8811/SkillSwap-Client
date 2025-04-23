@@ -2,8 +2,12 @@
 
 SkillSwap is a dynamic skill-bartering web application where users can **offer** and **request** skills in exchange — no money involved! Whether you're a coder, designer, artist, or language learner, SkillSwap creates a space where learning is mutual, accessible, and engaging.
 
-> 🚀 [Live Website](https://skillswap-471.web.app/)  
-> 🛠 [GitHub (Client)](https://github.com/ranak8811/SkillSwap-Client.git)
+> 🚀 Access the live application here: [SKillSwap Live Website](https://skillswap-471.web.app/)
+
+---
+
+> 🛠 [GitHub (Client Repository)](https://github.com/ranak8811/SkillSwap-Client.git)
+> 🛠 [GitHub (Server Repository)](https://github.com/ranak8811/SkillSwap-Server.git)
 
 ---
 
@@ -115,23 +119,23 @@ Built with **Express.js + MongoDB**:
    - Add the following varibales
 
      ```env
-     VITE_apiKey= collect this from firebase for your project
-     VITE_authDomain= collect this from firebase for your project
-     VITE_projectId= collect this from firebase for your project
-     VITE_storageBucket= collect this from firebase for your project
-     VITE_messagingSenderId= collect this from firebase for your project
-     VITE_appId= collect this from firebase for your project
+     VITE_apiKey=Collect this from firebase for your project
+     VITE_authDomain=Collect this from firebase for your project
+     VITE_projectId=Collect this from firebase for your project
+     VITE_storageBucket=Collect this from firebase for your project
+     VITE_messagingSenderId=Collect this from firebase for your project
+     VITE_appId=Collect this from firebase for your project
 
      # VITE_API_URL=http://localhost:4000
 
-     VITE_IMGBB_API_KEY= collect this from https://imgbb.com/ for your project
+     VITE_IMGBB_API_KEY=Collect this from https://imgbb.com/ for your project
      ```
 
    - Create a `.env` file in the backend directory.
    - Add the following variables:
      ```env
-     DB_USER= collect this from MONGODB database for your project
-     DB_PASS= collect this from MONGODB database for your project
+     DB_USER=Collect this from MONGODB database for your project
+     DB_PASS=Collect this from MONGODB database for your project
      ```
 
 3. Start the application:
@@ -147,11 +151,15 @@ Built with **Express.js + MongoDB**:
 
 4. Open your browser and navigate to `http://localhost:4000`.
 
+5. Open your browser and navigate to `http://localhost:5173`.
+
 ---
 
 ## Backend Repository
 
 Backend code link: https://github.com/ranak8811/SkillSwap-Server.git
+
+---
 
 ## Contribution
 
