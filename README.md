@@ -2,11 +2,18 @@
 
 SkillSwap is a dynamic skill-bartering web application where users can **offer** and **request** skills in exchange — no money involved! Whether you're a coder, designer, artist, or language learner, SkillSwap creates a space where learning is mutual, accessible, and engaging.
 
+---
+
 > 🚀 Access the live application here: [SKillSwap Live Website](https://skillswap-471.web.app/)
 
 ---
 
+- Frontend code Link:
+
 > 🛠 [GitHub (Client Repository)](https://github.com/ranak8811/SkillSwap-Client.git)
+
+- Backend code Link:
+
 > 🛠 [GitHub (Server Repository)](https://github.com/ranak8811/SkillSwap-Server.git)
 
 ---
@@ -115,8 +122,7 @@ Built with **Express.js + MongoDB**:
 
 2. Set up environment variables:
 
-   - Create a `.env.local` file in the frontend directory.
-   - Add the following varibales
+   - Create a `.env.local` file in the frontend directory. Add the following varibales
 
      ```env
      VITE_apiKey=Collect this from firebase for your project
@@ -126,13 +132,13 @@ Built with **Express.js + MongoDB**:
      VITE_messagingSenderId=Collect this from firebase for your project
      VITE_appId=Collect this from firebase for your project
 
-     # VITE_API_URL=http://localhost:4000
+     VITE_API_URL=http://localhost:4000
 
      VITE_IMGBB_API_KEY=Collect this from https://imgbb.com/ for your project
      ```
 
-   - Create a `.env` file in the backend directory.
-   - Add the following variables:
+   - Create a `.env` file in the backend directory. Add the following variables:
+
      ```env
      DB_USER=Collect this from MONGODB database for your project
      DB_PASS=Collect this from MONGODB database for your project
