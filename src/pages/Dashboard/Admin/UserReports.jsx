@@ -79,7 +79,7 @@ const UserReports = () => {
               <th className="p-2">#</th>
               <th className="p-2">Reporter's Email</th>
               <th className="p-2">Reason </th>
-              <th className="p-2">Skill </th>
+              <th className="p-2">Skill Post link </th>
               <th className="p-2">Action</th>
             </tr>
           </thead>

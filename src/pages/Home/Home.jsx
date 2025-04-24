@@ -8,14 +8,17 @@ import useAuth from "../../hooks/useAuth";
 import { GoSearch } from "react-icons/go";
 import useTitle from "../../../public/PageTitle/title";
 
+
 const Home = () => {
   useTitle("Home");
   const { user } = useAuth();
 
   const [search, setSearch] = useState("");
   const [debouncedSearch, setDebouncedSearch] = useState(""); // debounced value
-  const [currentPage, setCurrentPage] = useState(0);
+
   const [itemsPerPage, setItemsPerPage] = useState(3);
+  const [currentPage, setCurrentPage] = useState(0);
+  
   const [sortByDate, setSortByDate] = useState(false);
 
   // Debounce search input (500ms delay)
@@ -28,6 +31,7 @@ const Home = () => {
   }, [search]);
 
   const { data = {}, isLoading } = useQuery({
+
     queryKey: [
       "skills",
       debouncedSearch,
@@ -47,6 +51,7 @@ const Home = () => {
 
   const skills = data.skills || [];
   const skillsCount = data.count || 0;
+
   const numberOfPages = Math.ceil(skillsCount / itemsPerPage);
 
   if (isLoading) return <LoadingPage />;
@@ -61,6 +66,7 @@ const Home = () => {
         <h2 className="text-2xl font-semibold text-center my-8">
           Explore Skills
         </h2>
+
 
         {/* Search Input */}
         <div className="max-w-[600px] mx-auto relative mb-6">
@@ -101,6 +107,7 @@ const Home = () => {
               </option>
             ))}
           </select>
+
         </div>
 
         {/* Skill Cards Section */}
@@ -116,19 +123,22 @@ const Home = () => {
           </div>
         ) : (
           <p className="text-center text-red-500 font-medium mt-10">
-            No skills found for your search.
+            Sadly, No skills found for your search.
           </p>
         )}
+
 
         {/* Pagination Controls */}
         <div className="flex justify-center items-center gap-2 mt-10 flex-wrap">
           {[...Array(numberOfPages).keys()].map((num) => (
             <button
               key={num}
+              
               onClick={() => setCurrentPage(num)}
               className={`btn btn-sm ${
                 currentPage === num ? "bg-[#54b689] text-white" : "btn-outline"
               }`}
+
             >
               {num + 1}
             </button>
