@@ -31,6 +31,7 @@ const UserReports = () => {
   if (isLoading) return <LoadingPage />;
 
   const handleDelete = (id) => {
+
     Swal.fire({
       title: "Are you sure?",
       text: "This report will be deleted permanently!",
@@ -57,7 +58,7 @@ const UserReports = () => {
     });
   };
 
-  // Pagination logic
+  // Pagination logic aikhane
   const totalPages = Math.ceil(allReports.length / reportsPerPage);
   const indexOfLastReport = currentPage * reportsPerPage;
   const indexOfFirstReport = indexOfLastReport - reportsPerPage;
@@ -66,18 +67,19 @@ const UserReports = () => {
     indexOfLastReport
   );
 
+
   return (
     <div className="p-4">
-      <h2 className="text-2xl font-bold mb-4">Show User Reports</h2>
+      <h2 className="text-2xl font-bold mb-4">Show All User Reports</h2>
 
       <div className="overflow-x-auto">
         <table className="table w-full border">
           <thead>
             <tr className="bg-gray-100 text-left">
               <th className="p-2">#</th>
-              <th className="p-2">Reporter Email</th>
-              <th className="p-2">Reason</th>
-              <th className="p-2">Skill</th>
+              <th className="p-2">Reporter's Email</th>
+              <th className="p-2">Reason </th>
+              <th className="p-2">Skill </th>
               <th className="p-2">Action</th>
             </tr>
           </thead>
@@ -108,7 +110,8 @@ const UserReports = () => {
           </tbody>
         </table>
 
-        {/* Pagination */}
+
+        {/* Pagination */} 
         <div className="mt-4 flex justify-center space-x-2">
           {[...Array(totalPages).keys()].map((num) => (
             <button
@@ -127,4 +130,4 @@ const UserReports = () => {
   );
 };
 
-export default UserReports;
+export default UserReports; // UserReports
