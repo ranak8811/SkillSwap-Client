@@ -67,7 +67,7 @@ const UserReports = () => {
 
   return (
     <div className="p-4">
-      <h2 className="text-2xl font-bold mb-4">User Reports</h2>
+      <h2 className="text-2xl font-bold mb-4">Show User Reports</h2>
 
       <div className="overflow-x-auto">
         <table className="table w-full border">
