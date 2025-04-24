@@ -7,6 +7,7 @@ import Swal from "sweetalert2";
 import toast from "react-hot-toast";
 import useTitle from "../../../../public/PageTitle/title";
 
+
 const UserReports = () => {
   useTitle("User Reports");
   const navigate = useNavigate();
