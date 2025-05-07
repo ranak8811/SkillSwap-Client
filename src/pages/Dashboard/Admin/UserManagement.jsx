@@ -82,7 +82,7 @@ const UserManagement = () => {
 
   return (
     <div className="p-4">
-      <h2 className="text-2xl font-semibold mb-4">User Management</h2>
+      <h2 className="text-2xl font-semibold mb-4">User Account Management</h2>
 
       <div className="mb-4 flex items-center gap-2">
         <input

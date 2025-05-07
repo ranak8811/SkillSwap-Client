@@ -167,6 +167,10 @@ const SkillDetails = () => {
               </button>
             )}
 
+<div>
+  Share Options: 
+</div>
+            
             <FacebookShareButton url={skillUrl} quote={title}>
               <FacebookIcon size={32} round />
             </FacebookShareButton>
