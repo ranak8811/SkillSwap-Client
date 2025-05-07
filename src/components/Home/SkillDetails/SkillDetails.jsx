@@ -107,6 +107,7 @@ const SkillDetails = () => {
     <div className="max-w-5xl mx-auto p-4 text-[#07110c]">
       <div className="bg-white shadow-md rounded-2xl overflow-hidden">
         <img src={image} alt={title} className="w-full h-64 object-cover" />
+        
         <div className="p-6 space-y-4">
           <div className="flex items-center gap-4">
             <img
@@ -245,6 +246,7 @@ const SkillDetails = () => {
               <li key={rev._id} className="border-b pb-2">
                 <p className="font-semibold">Rating: {rev.rating}/5</p>
                 <p className="text-sm">Comment: {rev.comment}</p>
+                <p className="text-sm"> {rev.reviewedAt ? format(new Date(rev.reviewedAt), "PPpp") : "N/A"} </p>
               </li>
             ))}
           </ul>
@@ -254,13 +256,14 @@ const SkillDetails = () => {
       {/* Reports Section */}
       {reports?.length > 0 && (
         <div className="mt-10 bg-white p-4 rounded-xl shadow">
-          <h3 className="text-xl font-bold mb-4 text-red-600">Reports</h3>
+          <h3 className="text-xl font-bold mb-4 text--600">Reports</h3>
           <ul className="space-y-3">
             {reports.map((rep) => (
-              <li key={rep._id} className="border-b pb-2">
+              <li key={rep._id} className="border-b pb-2 text-red-500">
                 <p className="font-semibold">
                   Reported by: {rep.reporterEmail}
                 </p>
+                <p className="text-sm text-500"> {rep.reportedAt ? format(new Date(rep.reportedAt), "PPpp") : "N/A"}</p> 
                 <p className="text-sm text-red-500">Reason: {rep.reason}</p>
               </li>
             ))}

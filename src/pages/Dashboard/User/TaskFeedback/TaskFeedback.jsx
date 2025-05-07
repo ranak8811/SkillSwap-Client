@@ -116,7 +116,7 @@ const TaskFeedback = () => {
                       className="btn btn-sm btn-primary"
                       onClick={() => navigate(`/skillDetails/${mySkillId}`)}
                     >
-                      My Skill
+                      My shared Skill
                     </button>
                   </td>
                   <td>
@@ -124,7 +124,7 @@ const TaskFeedback = () => {
                       className="btn btn-sm btn-accent"
                       onClick={() => navigate(`/skillDetails/${otherSkillId}`)}
                     >
-                      Other Skill
+                      Skill i Took
                     </button>
                   </td>
                   <td>
@@ -214,6 +214,7 @@ const TaskFeedback = () => {
                       skillId: selectedSkill.skillId,
                       rating: reviewData.rating,
                       comment: reviewData.comment,
+                      reviewedAt: new Date().toISOString(), //pppppp
                     })
                   }
                 >
@@ -247,6 +248,7 @@ const TaskFeedback = () => {
                       reporterEmail: user.email,
                       skillId: selectedSkill.skillId,
                       reason: reportReason,
+                      reportedAt: new Date().toISOString(), //pppppp
                     })
                   }
                 >

@@ -6,7 +6,7 @@ import { useNavigate } from "react-router-dom";
 import Swal from "sweetalert2";
 import toast from "react-hot-toast";
 import useTitle from "../../../../public/PageTitle/title";
-
+import { format } from "date-fns";
 
 const UserReports = () => {
   useTitle("User Reports");
@@ -79,6 +79,7 @@ const UserReports = () => {
               <th className="p-2">#</th>
               <th className="p-2">Reporter's Email</th>
               <th className="p-2">Reason </th>
+              <th className="p-2">Time</th>
               <th className="p-2">Skill Post link </th>
               <th className="p-2">Action</th>
             </tr>
@@ -88,7 +89,9 @@ const UserReports = () => {
               <tr key={report._id} className="hover:bg-gray-50">
                 <td className="p-2">{indexOfFirstReport + index + 1}</td>
                 <td className="p-2">{report.reporterEmail}</td>
+                
                 <td className="p-2">{report.reason}</td>
+                <td className="p-2"> {report.reportedAt ? format(new Date(report.reportedAt), "PPpp") : "N/A"}</td>
                 <td className="p-2">
                   <button
                     className="text-blue-600 underline"

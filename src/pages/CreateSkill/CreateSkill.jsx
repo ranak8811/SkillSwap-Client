@@ -100,6 +100,7 @@ const CreateSkill = () => {
             value={formData.title}
             onChange={handleChange}
             className="input input-bordered w-full border-secondaryy"
+            placeholder="Enter skill title"
           />
         </div>
 
@@ -123,6 +124,7 @@ const CreateSkill = () => {
             value={formData.description}
             onChange={handleChange}
             className="textarea textarea-bordered w-full border-secondaryy"
+            placeholder="Enter skill description....."
           ></textarea>
         </div>
 
