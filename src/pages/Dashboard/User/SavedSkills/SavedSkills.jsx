@@ -7,6 +7,7 @@ import { useNavigate } from "react-router-dom";
 import Swal from "sweetalert2";
 import toast from "react-hot-toast";
 import useTitle from "../../../../../public/PageTitle/title";
+import SearchPagination from "../../../../components/SearchPagination";
 
 const SavedSkills = () => {
   useTitle("Saved Skills");
@@ -14,14 +15,20 @@ const SavedSkills = () => {
   const navigate = useNavigate();
   const [searchTerm, setSearchTerm] = useState("");
   const [currentPage, setCurrentPage] = useState(1);
-  const skillsPerPage = 10;
+  const [skillsPerPage, setSkillsPerPage] = useState(5);
 
   const {
     data: savedData = {},
     isLoading,
     refetch,
   } = useQuery({
-    queryKey: ["savedSkills", user?.email, currentPage, searchTerm],
+    queryKey: [
+      "savedSkills",
+      user?.email,
+      currentPage,
+      searchTerm,
+      skillsPerPage,
+    ],
     enabled: !!user?.email,
     queryFn: async () => {
       const { data } = await axios.get(
@@ -69,9 +76,9 @@ const SavedSkills = () => {
     });
   };
 
-  const handleSearch = (e) => {
-    e.preventDefault();
+  const handleSearch = (value) => {
     setCurrentPage(1);
+    setSearchTerm(value);
     refetch();
   };
 
@@ -80,20 +87,16 @@ const SavedSkills = () => {
   return (
     <div className="p-4">
       <h2 className="text-2xl font-semibold mb-4">Saved Skills</h2>
-
-      {/* Search Input */}
-      <form onSubmit={handleSearch} className="mb-4 flex items-center gap-3">
-        <input
-          type="text"
-          placeholder="Search by title..."
-          value={searchTerm}
-          onChange={(e) => setSearchTerm(e.target.value)}
-          className="input input-bordered w-64"
-        />
-        <button type="submit" className="btn bg-[#54b689] text-white">
-          Search
-        </button>
-      </form>
+      <SearchPagination
+        searchTerm={searchTerm}
+        setSearchTerm={setSearchTerm}
+        page={currentPage}
+        setPage={setCurrentPage}
+        limit={skillsPerPage}
+        setLimit={setSkillsPerPage}
+        totalPages={totalPages}
+        onSearch={handleSearch}
+      />
 
       {/* Table */}
       <div className="overflow-x-auto">
@@ -141,23 +144,7 @@ const SavedSkills = () => {
       </div>
 
       {/* Pagination */}
-      {totalPages > 1 && (
-        <div className="flex justify-center mt-6 gap-2">
-          {[...Array(totalPages).keys()].map((num) => (
-            <button
-              key={num}
-              onClick={() => setCurrentPage(num + 1)}
-              className={`btn btn-sm ${
-                currentPage === num + 1
-                  ? "bg-[#54b689] text-white"
-                  : "bg-gray-200"
-              }`}
-            >
-              {num + 1}
-            </button>
-          ))}
-        </div>
-      )}
+      {/* Pagination handled by SearchPagination */}
     </div>
   );
 };

@@ -6,9 +6,11 @@ import toast from "react-hot-toast";
 import LoadingPage from "../../LoadingPage/LoadingPage";
 import { Tooltip } from "react-tooltip";
 import useTitle from "../../../../public/PageTitle/title";
+import useAuth from "../../../hooks/useAuth";
 
 const UserManagement = () => {
   useTitle("User Management");
+  const { user: currentUser } = useAuth();
   const [search, setSearch] = useState("");
   const [currentPage, setCurrentPage] = useState(1);
   const itemsPerPage = 10;
@@ -133,12 +135,14 @@ const UserManagement = () => {
                   </select>
                 </td>
                 <td>
-                  <button
-                    onClick={() => handleDelete(user._id)}
-                    className="btn btn-error text-white btn-sm"
-                  >
-                    Delete
-                  </button>
+                  {currentUser.email !== user.email && (
+                    <button
+                      onClick={() => handleDelete(user._id)}
+                      className="btn btn-error text-white btn-sm"
+                    >
+                      Delete
+                    </button>
+                  )}
                 </td>
               </tr>
             ))}

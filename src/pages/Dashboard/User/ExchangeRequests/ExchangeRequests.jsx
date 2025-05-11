@@ -6,6 +6,7 @@ import LoadingPage from "../../../LoadingPage/LoadingPage";
 import { useNavigate } from "react-router-dom";
 import toast from "react-hot-toast";
 import useTitle from "../../../../../public/PageTitle/title";
+import SearchPagination from "../../../../components/SearchPagination";
 
 const ExchangeRequests = () => {
   useTitle("Exchange Requests");
@@ -14,10 +15,15 @@ const ExchangeRequests = () => {
   const { user } = useAuth();
   const [search, setSearch] = useState("");
   const [currentPage, setCurrentPage] = useState(1);
-  const limit = 10;
+  const [limit, setLimit] = useState(10);
+
+  const handleSearch = (searchValue) => {
+    setSearch(searchValue);
+    setCurrentPage(1);
+  };
 
   const { data, isLoading } = useQuery({
-    queryKey: ["exchangeRequests", user?.email, search, currentPage],
+    queryKey: ["exchangeRequests", user?.email, search, currentPage, limit],
     enabled: !!user?.email,
     queryFn: async () => {
       const { data } = await axios.get(
@@ -56,20 +62,16 @@ const ExchangeRequests = () => {
   return (
     <div className="p-4">
       <h2 className="text-2xl font-semibold mb-4">Exchange Requests</h2>
-
-      {/* Search */}
-      <div className="flex items-center gap-2 mb-4">
-        <input
-          type="text"
-          placeholder="Search by title..."
-          value={search}
-          onChange={(e) => {
-            setSearch(e.target.value);
-            setCurrentPage(1);
-          }}
-          className="input input-bordered w-64"
-        />
-      </div>
+      <SearchPagination
+        searchTerm={search}
+        setSearchTerm={setSearch}
+        page={currentPage}
+        setPage={setCurrentPage}
+        limit={limit}
+        setLimit={setLimit}
+        totalPages={totalPages}
+        onSearch={handleSearch}
+      />
 
       {/* Table */}
       <div className="overflow-x-auto">
@@ -147,23 +149,7 @@ const ExchangeRequests = () => {
       </div>
 
       {/* Pagination */}
-      {totalPages > 1 && (
-        <div className="flex justify-center mt-4 gap-2">
-          {[...Array(totalPages).keys()].map((num) => (
-            <button
-              key={num}
-              onClick={() => setCurrentPage(num + 1)}
-              className={`btn btn-sm ${
-                currentPage === num + 1
-                  ? "bg-[#54b689] text-white"
-                  : "bg-gray-200"
-              }`}
-            >
-              {num + 1}
-            </button>
-          ))}
-        </div>
-      )}
+      {/* Pagination handled by SearchPagination */}
     </div>
   );
 };

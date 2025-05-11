@@ -54,6 +54,7 @@ const Banner = () => {
   const [currentBanner, setCurrentBanner] = useState(0);
   const [showDropdown, setShowDropdown] = useState(false);
   const [activeCorner, setActiveCorner] = useState(null); // State for active corner
+  const [showMainContent, setShowMainContent] = useState(true); // Toggle for main content
 
   useEffect(() => {
     const interval = setInterval(() => {
@@ -85,67 +86,80 @@ const Banner = () => {
       {/* Dark Overlay */}
       <div className="absolute top-0 left-0 w-full h-full bg-[#00000060] z-0"></div>
 
-      {/* Main Content Container (Centered) */}
-      <div className="relative z-10 flex flex-col md:flex-row justify-between items-center h-full w-full max-w-6xl px-6 md:px-10 py-8">
-        {/* Left side: text and button */}
-        <div className="text-white max-w-xl text-center md:text-left mb-8 md:mb-0">
-          <h1 className="text-4xl md:text-5xl font-bold mb-4">
-            <Typewriter
-              words={[
-                "Welcome to SkillSwap",
-                "Share Skills",
-                "Request Help",
-                "Learn & Grow",
-              ]}
-              loop
-              cursor
-              cursorStyle="|"
-              typeSpeed={70}
-              deleteSpeed={50}
-              delaySpeed={2000}
-            />
-          </h1>
-          <p className="text-lg mb-6">
-            A unique platform to exchange skills through offering and
-            requesting. SkillSwap is a web platform designed to facilitate the
-            exchange of skills between users. It allows individuals to offer
-            their abilities and request help from others, fostering a
-            community-driven environment for learning and collaboration.
-          </p>
-          <div className="flex gap-4 items-center">
-            <div>
-              <a href="#skills-section">
-                <button className="bg-[#54b689] hover:bg-[#439e76] text-white font-semibold px-6 py-3 rounded-xl transition">
-                  Go to Skills Section
-                </button>
-              </a>
-            </div>
+      {/* Toggle Button for Main Content */}
+      <button
+        className="absolute top-6 right-1/2 translate-x-1/2 z-30 bg-black/60 text-white px-4 py-2 rounded-full shadow-lg hover:bg-black/80 transition"
+        onClick={() => setShowMainContent((prev) => !prev)}
+        aria-label={showMainContent ? "Hide banner content" : "Show banner content"}
+      >
+        {showMainContent ? "Hide Banner Content" : "Show Banner Content"}
+      </button>
 
-            <div className="relative mt-8 md:mt-0">
-              <button
-                onClick={() => setShowDropdown((prev) => !prev)}
-                className="btn-outline bg-white hover:bg-[#54b689] hover:text-white text-[#07110c] font-medium px-6 py-3 rounded-xl transition"
-              >
-                All Categories
-              </button>
-              {showDropdown && (
-                <div className="absolute right-0 mt-2 bg-white shadow-lg rounded-md w-48 max-h-60 overflow-y-auto z-50">
-                  {categories.map((cat) => (
-                    <div
-                      key={cat._id}
-                      className="px-4 py-2 hover:bg-[#f9fcfa] cursor-pointer border-b text-gray-800"
-                    >
-                      {cat.name}
-                    </div>
-                  ))}
-                </div>
-              )}
+      {/* Main Content Container (Centered) */}
+      {showMainContent && (
+        <div className="relative z-10 flex flex-col md:flex-row justify-between items-center h-full w-full max-w-6xl px-6 md:px-10 py-8">
+          {/* Overlay behind text/button container for better visibility */}
+          <div className="absolute inset-0 md:inset-y-0 md:left-0 md:w-2/3 bg-black/70 rounded-2xl blur-sm z-[-1] mx-2 md:mx-0"></div>
+          {/* Left side: text and button */}
+          <div className="text-white max-w-xl text-center md:text-left mb-8 md:mb-0">
+            <h1 className="text-4xl md:text-5xl font-bold mb-4">
+              <Typewriter
+                words={[
+                  "Welcome to SkillSwap",
+                  "Share Skills",
+                  "Request Help",
+                  "Learn & Grow",
+                ]}
+                loop
+                cursor
+                cursorStyle="|"
+                typeSpeed={70}
+                deleteSpeed={50}
+                delaySpeed={2000}
+              />
+            </h1>
+            <p className="text-lg mb-6">
+              A unique platform to exchange skills through offering and
+              requesting. SkillSwap is a web platform designed to facilitate the
+              exchange of skills between users. It allows individuals to offer
+              their abilities and request help from others, fostering a
+              community-driven environment for learning and collaboration.
+            </p>
+            <div className="flex gap-4 items-center">
+              <div>
+                <a href="#skills-section">
+                  <button className="bg-[#54b689] hover:bg-[#439e76] text-white font-semibold px-6 py-3 rounded-xl transition">
+                    Go to Skills Section
+                  </button>
+                </a>
+              </div>
+
+              <div className="relative mt-8 md:mt-0">
+                <button
+                  onClick={() => setShowDropdown((prev) => !prev)}
+                  className="btn-outline bg-white hover:bg-[#54b689] hover:text-white text-[#07110c] font-medium px-6 py-3 rounded-xl transition"
+                >
+                  All Categories
+                </button>
+                {showDropdown && (
+                  <div className="absolute right-0 mt-2 bg-white shadow-lg rounded-md w-48 max-h-60 overflow-y-auto z-50">
+                    {categories.map((cat) => (
+                      <div
+                        key={cat._id}
+                        className="px-4 py-2 hover:bg-[#f9fcfa] cursor-pointer border-b text-gray-800"
+                      >
+                        {cat.name}
+                      </div>
+                    ))}
+                  </div>
+                )}
+              </div>
             </div>
           </div>
-        </div>
 
-        {/* Right side: category dropdown */}
-      </div>
+          {/* Right side: category dropdown */}
+        </div>
+      )}
 
       {/* Corner Icons and Content */}
       {Object.entries(cornerContents).map(([cornerKey, content]) => {
