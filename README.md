@@ -14,7 +14,7 @@ SkillSwap is a dynamic skill-bartering web application where users can **offer**
 
 - Backend code Link:
 
-> 🛠 [GitHub (Server Repository)](https://github.com/ranak8811/SkillSwap-Server.git)
+> 🛠 [GitHub (Server Repository)](https://github.com/ranak8811/SkillSwap-Server-Updated.git)
 
 ---
 
@@ -115,8 +115,8 @@ Built with **Express.js + MongoDB**:
    **Backend**
 
    ```bash
-   git clone https://github.com/ranak8811/SkillSwap-Server.git
-   cd SkillSwap-Server
+   git clone https://github.com/ranak8811/SkillSwap-Server-Updated.git
+   cd SkillSwap-Server-Updated
    npm install
    ```
 
@@ -163,7 +163,7 @@ Built with **Express.js + MongoDB**:
 
 ## Backend Repository
 
-Backend code link: https://github.com/ranak8811/SkillSwap-Server.git
+Backend code link: https://github.com/ranak8811/SkillSwap-Server-Updated.git
 
 ---
 
